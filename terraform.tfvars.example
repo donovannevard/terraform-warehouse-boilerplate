@@ -1,0 +1,38 @@
+# Copy to terraform.tfvars and fill in values
+# Never commit the real file!
+
+project_name   = "client-name-platform"
+environment    = "development"  # or "production"
+
+warehouse_type = "snowflake"     # "snowflake", "databricks", or "redshift"
+
+use_airflow    = false
+airflow_type   = "mwaa"          # "mwaa" or "ec2" (only if use_airflow = true)
+
+use_fivetran   = true
+
+# Snowflake (required if warehouse_type = "snowflake")
+snowflake_account_identifier = "xy12345.eu-west-2"
+snowflake_username           = "DBT_USER"
+snowflake_password           = "supersecretpassword"
+# snowflake_role             = "ACCOUNTADMIN"  # optional, defaults to ACCOUNTADMIN
+
+# Databricks (required if warehouse_type = "databricks")
+# databricks_workspace_url = "https://adb-1234567890.1.azuredatabricks.net"
+# databricks_token         = "dapiXXXXXXXXXXXXXXXX"
+
+# Redshift (required if warehouse_type = "redshift")
+# redshift_node_type       = "ra3.4xlarge"
+# redshift_number_of_nodes = 2
+
+# Airflow (required if use_airflow = true)
+# airflow_admin_password   = "adminpasswordchangeit"
+# airflow_ec2_instance_type = "m6i.xlarge"  # only for ec2 type
+
+# Fivetran (required if use_fivetran = true)
+fivetran_api_key    = "your_fivetran_api_key"
+fivetran_api_secret = "your_fivetran_api_secret"
+fivetran_group_id   = "your_group_id"
+
+# Optional sample connector
+sample_google_sheet_id = ""  # e.g., "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"

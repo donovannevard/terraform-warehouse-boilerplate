@@ -35,3 +35,24 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Terraform plan output files (if you ever save plans)
+*.tfplan
+
+# Local environment variables (sometimes people drop a .env)
+.env
+.env.local
+
+# OS / Editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE/Project files (if you ever open in VSCode, etc.)
+.vscode/
+.idea/
+
+# Mac/Linux temp files
+._*
