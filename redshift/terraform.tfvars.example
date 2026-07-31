@@ -1,0 +1,33 @@
+# Copy this file to terraform.tfvars and fill in the values you need.
+# DO NOT commit terraform.tfvars — it will contain live secrets, and the local
+# state file created by `terraform apply` will too. Both are already gitignored.
+#
+# Everything below has a sensible default in variables.tf except account
+# credentials and the CIDR restriction, which only you can supply.
+
+use_fivetran = true
+use_airflow  = false
+airflow_type = "mwaa" # "mwaa" or "ec2" (only read when use_airflow = true)
+
+# ---- AWS (always required for Redshift) ------------------------------------
+aws_region = "eu-west-2"
+aws_prefix = "acme-co"
+
+# ---- Redshift-specific ------------------------------------------------------
+# SECURITY: pick your actual office/VPN CIDR here — there is deliberately no
+# default, so it's never accidentally left open to the whole internet.
+redshift_inbound_cidr_restriction = "203.0.113.0/24"
+
+# ---- Fivetran (required when use_fivetran = true) --------------------------
+fivetran_api_key    = "xxx"
+fivetran_api_secret = "xxx"
+fivetran_group_id   = "xxx"
+fivetran_region     = "AWS_EU_WEST_2" # must match your Fivetran group's region
+
+# ---- Airflow/EC2-specific (only read when use_airflow = true, airflow_type = "ec2") ----
+# SECURITY: same as above — pick your real CIDR, no wide-open default.
+# ec2_inbound_cidr_restriction = "203.0.113.0/24"
+# airflow_ec2_admin_email      = "admin@example.com"
+# airflow_ec2_enable_https     = false # true requires airflow_ec2_domain
+# airflow_ec2_domain           = "airflow.example.com"
+# airflow_ec2_route53_zone_id  = "Z1234567890ABC" # optional: fully automates DNS validation
